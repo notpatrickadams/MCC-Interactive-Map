@@ -1,0 +1,90 @@
+/*
+Patrick Adams
+CIS291
+Fall 2019 Semester
+
+MCC Interactive Map "v1.1"
+*/
+
+/* Imports Montserrat and Patua through Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Patua+One|Hepta+Slab&display=swap');
+
+/* Sets custom colors I took from https://mccnh.edu/ */
+:root {
+  --mcc-dark-green: #105E55;
+  --mcc-light-green: #A4CE4C;
+}
+
+body {  
+  font-family: 'Patua One', cursive;
+}
+
+/* Keypad buttons */
+input[type=button].numpad {
+  font-family: 'Montserrat', sans-serif;
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+input[type=button].keys {
+  font-family: 'Montserrat', sans-serif;
+  width: 210px;
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.floorbutton {
+  width: 110px;
+  border: none;
+  margin: 5px;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--mcc-light-green);
+}
+
+/* Right and left columns */
+.row {
+  margin: 5px;
+}
+
+.left {
+  width: 20%;
+  border-right: 2px solid #dddddd;
+}
+
+.right {
+  width: 80%;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Sets size for MCC map */
+.mcc-map {
+  width: 80%;
+}
+
+/* Colored bands at the top of the app */
+.header-decoration {
+  background-color: #454545;
+  border-bottom: 10px solid var(--mcc-light-green);
+  padding: 15px;
+}
+
+/* Text area under colored bands */
+.header {
+  background-color: #ffffff;
+  border-bottom: 20px solid var(--mcc-light-green);
+  padding: 10px;
+}
