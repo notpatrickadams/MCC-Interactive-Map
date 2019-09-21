@@ -19,7 +19,7 @@ def listclear():
 
 @eel.expose
 def numtostring():
-    s = ''
+    s = ""
     if numList is None or len(numList) == 0:
         return "CRN / Room #"
     if len(numList) > 5:
@@ -37,16 +37,5 @@ def numtostring():
 def printreturn():
     print(eel.radiochoice()())
 
-eel.init('web')
+eel.init("web")
 eel.start("main.html")
-
-
-
-'''
-#Found window size option: https://stackoverflow.com/a/56430385
-if eel.chrome.get_instance_path() is not None:
-    eel.start('main.html', size=(650, 612), options={'port': 0})
-else:
-    eel.start('main.html', size=(650, 612), options={
-              'port': 0, 'mode': 'user selection'})
-'''
