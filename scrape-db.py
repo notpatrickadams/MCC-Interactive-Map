@@ -110,8 +110,6 @@ def classFind(semester):
 
 #Inserts course data into the database
 def insertData(semester):
-    #If len of rooms > 1, create separate insert statements for each room
-    #semester = f"{getSeason(datetime.today())}-{datetime.today().year}"
     semester2 = semester.replace(" ", "-")
 
     conn = sqlite3.connect("courses.db")
