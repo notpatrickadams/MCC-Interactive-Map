@@ -1,4 +1,5 @@
-import eel
+import eel, scrapedb
+from datetime import datetime
 
 numList = []
 
@@ -36,6 +37,11 @@ def numtostring():
 @eel.expose
 def printreturn():
     print(eel.radiochoice()())
+
+@eel.expose
+def crntoroom(crn):
+    d = datetime.today()
+    return scrapedb.search(crn, f"{scrapedb.getSeason(d)}-{d.year}")
 
 eel.init("web")
 eel.start("main.html")

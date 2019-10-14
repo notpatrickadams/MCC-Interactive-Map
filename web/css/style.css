@@ -38,6 +38,15 @@ input[type=button].keys {
   border-radius: 5px;
 }
 
+canvas {
+  position: absolute;
+  width: 1400px;
+  height: 800px;
+  border: 2px solid #dddddd;
+  background-size: 1400px 800px;
+  background-image: url('../assets/map/2.jpg');
+}
+
 .floorbutton {
   width: 110px;
   border: none;
@@ -71,8 +80,10 @@ input[type=button].keys {
 }
 
 /* Sets size for MCC map */
+
 .mcc-map {
-  width: 80%;
+  height: 33.33%;
+  transform: rotate(90deg);
 }
 
 /* Colored bands at the top of the app */
@@ -85,6 +96,15 @@ input[type=button].keys {
 /* Text area under colored bands */
 .header {
   background-color: #ffffff;
-  border-bottom: 20px solid var(--mcc-light-green);
   padding: 10px;
+}
+
+.map-stack {
+  position: absolute;
+}
+
+.layer {
+  position: absolute;
+  width: 120vh;
+  height: 75vh;
 }

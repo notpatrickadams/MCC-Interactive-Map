@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>MCC Map</title>
@@ -9,52 +9,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/customradio.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="css/map-overlay.css">
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     <script type="text/javascript" src="/eel.js"></script>
-    <script type="text/javascript">
-      //Eel functions from Python side
-
-      //Adds number to the list of other numbers (either room number or CRN)
-      function listadder(num){
-        eel.listadd(num)();
-      }
-      //Deletes a number
-      function backspace() {
-        eel.listpop()();
-      }
-      //Clears the number list
-      function listclear() {
-        eel.listclear()();
-      }
-      //Lets the user choose the floor map based on which button they clicked
-      function maplevel(floornum) {
-        document.getElementById("map").innerHTML='<img src="assets/map/' + floornum + '.png" alt="" class="mcc-map">'
-      }
-      //Displays the number list
-      async function listdisplay(){
-        let n = await eel.numtostring()();
-        document.getElementById("num").innerHTML=n;
-      }
-
-      //Eel.expose has Javascript functions return to Python side for use over there.
-      eel.expose(radiochoice);
-      function radiochoice(){
-        var radios = document.getElementsByName('radio');
-        for (var i = 0, length = radios.length; i < length; i++) {
-          if (radios[i].checked) {
-            // do whatever you want with the checked radio
-            return radios[i].value;
-          }
-        }
-      }
-      
-    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+  </head>
+  <body>
+    <!-- Map overlay -->
+    <div id="map-overlay" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeMap()">&times;</a>
+      <div class="overlay-content">
+        <p>Howdy</p>
+      </div>
+    </div>
 
     <!-- MCC-like Header -->
     <div class="header-decoration"></div>
@@ -101,34 +74,39 @@
           <br>
           <tr>
             <input class="numpad" type="button" value="0" onclick="listadder(0); listdisplay()">
+            <input class="numpad" type="button" value="A" onclick="listadder('A'); listdisplay()">
+            <input class="numpad" type="button" value="B" onclick="listadder('B'); listdisplay()">
           </tr>
         </table>
         <br>
         <input class="keys" type="button" value="Backspace" onclick="backspace(); listdisplay()">
         <br>
-        <input class="keys" type="button" value="Clear" onclick="listclear(); listdisplay()">
+        <input class="keys" type="button" value="Clear" onclick="listclear(); listdisplay(); mapClear()">
         <br>
-        <input class="keys" type="button" value="Enter" onclick="eel.printreturn()">
+        <input class="keys" type="button" value="Enter" onclick="radiochoice()">
         <br>
         <br>
         <!-- This is where the room number or CRN will be displayed -->
-        <h1 id="num">CRN / Room #</h1>
+        <h1 id="num">-</h1>
         <br><br>
 
-        <!-- Level/floor choice for map -->
-        <input class="floorbutton" type="button" value="1st Floor" onclick="maplevel(1)">
-        <br>
-        <input class="floorbutton" type="button" value="2nd Floor" onclick="maplevel(2)">
-        <br>
-        <input class="floorbutton" type="button" value="3rd Floor" onclick="maplevel(3)">
+        <input class="floorbutton" type="button" value="Zoom" onclick="openMap()">
       </div>
 
       <!-- Right column -->
       <!-- The whole right column is the interactive map -->
       <div class="column right">
-        <h2>Interactive Campus Map</h2>
-        <div id="test"></div>
-        <div id="map"></div>
+        <div>
+          <p id="room">Room Number</p>
+          <div>
+            <input class="floorbutton" type="button" value="1" onclick="maplevel(1)">
+            <input class="floorbutton" type="button" value="2" onclick="maplevel(2)">
+            <input class="floorbutton" type="button" value="3" onclick="maplevel(3)">
+          </div>
+        </div>
+        <div id="map" class="map-stack">
+          <canvas id="mapCanvas"></canvas>  
+        </div>
       </div>
     </div>
 
