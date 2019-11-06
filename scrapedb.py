@@ -110,12 +110,12 @@ def classFind(semester):
 
 #Inserts course data into the database
 def insertData(semester):
-    semesterHypenated = semester.replace(" ", "-")
+    semesterHyphenated = semester.replace(" ", "-")
     conn = sqlite3.connect("courses.db")
     c = conn.cursor()
 
     #Creates the table with the name of the semester
-    c.execute(f"create table if not exists '{semesterHypenated}' ('CourseName' varchar(255), 'CRN' int, 'Rooms' varchar(255))")
+    c.execute(f"create table if not exists '{semesterHyphenated}' ('CourseName' varchar(255), 'CRN' int, 'Rooms' varchar(255))")
     #Gets data from SIS
     data = classFind(semester)
     
@@ -124,7 +124,7 @@ def insertData(semester):
         #This for loop is for if there is more than one room associated with a particular CRN
         for room in course["Rooms"]:
             #Inserts data into database
-            c.execute(f""" insert into '{semesterHypenated}' values (?, ?, ?) """, (course["CourseName"], course["CRN"], room))
+            c.execute(f""" insert into '{semesterHyphenated}' values (?, ?, ?) """, (course["CourseName"], course["CRN"], room))
 
     #Commits changes to the database
     conn.commit()
@@ -132,12 +132,12 @@ def insertData(semester):
 #Searches for a room number attached to the provided CRN
 def search(crn, semester):
     #This variable is only used for the name of the table
-    semesterHypenated = semester.replace(" ", "-")
+    semesterHyphenated = semester.replace(" ", "-")
     conn = sqlite3.connect("courses.db")
     c = conn.cursor()
 
     #Searches for the room number using the CRN within SQLite
-    sql = f""" select Rooms from '{semesterHypenated}' where CRN is '{crn}' """
+    sql = f""" select Rooms from '{semesterHyphenated}' where CRN is '{crn}' """
 
     c.execute(sql)
     r = c.fetchall()

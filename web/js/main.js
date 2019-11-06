@@ -48,7 +48,7 @@ async function radiochoice(){
             l = l.toString();
             if (l.startsWith("Manchester Main Building")) {
                 document.getElementById("room").innerHTML="<p>" + l + "</p>";
-                mapStroke(l.replace("Manchester Main Building ", ""));
+                start(l.replace("Manchester Main Building ", ""));
             }
             else {
                 if (i > 0) {
@@ -58,7 +58,7 @@ async function radiochoice(){
         }
         //If Room Number option is selected
         else {
-            mapStroke(n);
+            start(n);
         }
     }
 }
