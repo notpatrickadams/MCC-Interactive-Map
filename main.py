@@ -44,4 +44,4 @@ def crntoroom(crn):
     return scrapedb.search(crn, f"{scrapedb.getSeason(d)}-{d.year}")
 
 eel.init("web")
-eel.start("main.html")
+eel.start("main.html")	

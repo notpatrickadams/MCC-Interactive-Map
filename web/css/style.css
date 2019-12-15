@@ -6,10 +6,26 @@ Fall 2019 Semester
 MCC Interactive Map "v1.1"
 */
 
-/* Imports Montserrat and Patua through Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Patua+One|Hepta+Slab&display=swap');
+@font-face {
+    font-family: 'Montserrat';
+    src: url('webfontkit-20191114-112416/montserrat-regular-webfont.woff2') format('woff2'),
+         url('webfontkit-20191114-112416/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Patua One';
+    src: url('webfontkit-20191114-112416/patuaone-regular-webfont.woff2') format('woff2'),
+         url('webfontkit-20191114-112416/patuaone-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 /* Sets custom colors I took from https://mccnh.edu/ */
+
 :root {
   --mcc-dark-green: #105E55;
   --mcc-light-green: #A4CE4C;
