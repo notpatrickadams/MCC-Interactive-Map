@@ -2,4 +2,4 @@ eel==0.10.4
 lxml==4.4.1
 requests==2.22.0
 beautifulsoup4==4.8.1
-PyInstaller==3.5
+PyInstaller>=3.6
