@@ -3,3 +3,4 @@ lxml==4.6.3
 requests==2.22.0
 beautifulsoup4==4.8.1
 PyInstaller>=3.6
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
